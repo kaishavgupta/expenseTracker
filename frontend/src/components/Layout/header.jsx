@@ -1,14 +1,18 @@
-import { Navigate, NavLink, useLoaderData, useNavigate } from "react-router-dom";
+import { Navigate, NavLink, useLoaderData, useNavigate, useRevalidator } from "react-router-dom";
 import { logout } from "../../api/localProvider";
+import { toast } from "react-toastify";
 
 export const Header = () => {
   const data = useLoaderData();
   
   const userData = data?.user?.userData;
   const navigate = useNavigate();
+  const { revalidate } = useRevalidator();
   const handleLogout=()=>{
     logout()
+    revalidate()
     navigate("/login")
+    toast("Logout Successfull")
   }
 
   // const {username,email}=userData

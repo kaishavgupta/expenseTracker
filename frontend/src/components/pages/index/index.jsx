@@ -1,10 +1,11 @@
-import { Navigate, redirect, useLoaderData, useNavigate } from "react-router-dom";
+import { Navigate, useLoaderData } from "react-router-dom";
 import { Balance } from "./balance";
 // import { Footer } from "./Layout/footer";
 import { FormData } from "./form";
 import { Transaction } from "./transaction";
 
 export const Index = () => {
+
   const data = useLoaderData();
   const userData = data?.user?.userData;
   if (userData) {

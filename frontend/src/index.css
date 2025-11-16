@@ -193,42 +193,132 @@ form select:focus {
 }
 
 /* ========= TRANSACTION LIST ========= */
+
 .transactions {
-  background: #fff;
-  padding: 1.6rem;
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 1.8rem;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: 0.3s ease;
+}
+
+.transactions:hover {
+  transform: translateY(-3px);
 }
 
 .transactions h2 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   color: #0f172a;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
 #transaction-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: 1rem;
 }
 
+/* Transaction card */
 .transaction {
   display: flex;
   justify-content: space-between;
-  padding: 0.9rem 1.2rem;
-  border-radius: 10px;
-  font-weight: 500;
+  align-items: center;
+  padding: 1rem 1.3rem;
+  border-radius: 14px;
+  background: #f9fafb;
+  box-shadow: 0 5px 14px rgba(0,0,0,0.04);
+  transition: 0.25s ease;
+  cursor: pointer;
 }
 
+.transaction:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+
+/* ===== ACTION BUTTONS (EDIT + DELETE) ===== */
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.action-buttons button {
+  border: none;
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #e5e7eb; /* soft gray background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.25s ease;
+}
+
+/* EDIT BUTTON — NOW GREEN */
+.edit-btn {
+  background: #dcfce7; /* soft green */
+}
+
+.edit-btn:hover {
+  background: #bbf7d0; /* slightly brighter green on hover */
+  transform: scale(1.08);
+}
+
+.edit-btn svg {
+  color: #16a34a; /* green icon */
+}
+
+/* DELETE BUTTON */
+.delete-btn {
+  background: #fee2e2; /* soft red */
+}
+
+.delete-btn:hover {
+  background: #fecaca;
+  transform: scale(1.08);
+}
+
+.action-buttons svg {
+  color: #1f2937; /* dark icon color */
+}
+
+
+/* Income / Expense Left Border */
 .income-item {
-  background: rgba(34,197,94,0.15);
   border-left: 5px solid #22c55e;
 }
 
 .expense-item {
-  background: rgba(239,68,68,0.15);
   border-left: 5px solid #ef4444;
 }
+
+/* Amount styling */
+.transaction span:nth-child(2) {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+/* Edit + Delete Icons */
+.transaction svg {
+  cursor: pointer;
+  font-size: 1.45rem;
+  margin-left: 10px;
+  transition: 0.2s ease;
+  opacity: 0.8;
+}
+
+.transaction svg:hover {
+  opacity: 1;
+  transform: scale(1.12);
+}
+
+
 
 /* ========= FOOTER ========= */
 footer {
