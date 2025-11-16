@@ -1,8 +1,12 @@
-import { Form } from "react-router-dom";
-import { useRef } from "react";
+import { Form, Navigate, useLoaderData } from "react-router-dom";
 
 export const Login = () => {
-  const formRef = useRef();
+    const data = useLoaderData();
+    console.log(data);
+    
+  const userData = data?.user?.userData;
+  if (!userData) {
+    
   return (
     <>
       <div className="container">
@@ -10,14 +14,8 @@ export const Login = () => {
 
         <Form
           className="login-form"
-          method="post"
-          ref={formRef}
-          onSubmit={() => {
-            setTimeout(() => {
-              formRef.current?.reset(); // 🔥 clears form
-            }, 10);
-          }}
-        >
+          method="post">
+
           <div className="input-group">
             <label>Email</label>
             <input
@@ -44,5 +42,6 @@ export const Login = () => {
         </Form>
       </div>
     </>
-  );
+  );}
+  return <Navigate to={"/index"}/>
 };

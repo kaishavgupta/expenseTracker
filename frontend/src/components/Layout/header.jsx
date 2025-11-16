@@ -1,9 +1,16 @@
-import { NavLink, useLoaderData } from "react-router-dom";
+import { Navigate, NavLink, useLoaderData, useNavigate } from "react-router-dom";
 import { logout } from "../../api/localProvider";
 
 export const Header = () => {
   const data = useLoaderData();
+  
   const userData = data?.user?.userData;
+  const navigate = useNavigate();
+  const handleLogout=()=>{
+    logout()
+    navigate("/login")
+  }
+
   // const {username,email}=userData
   return (
     <header className="navbar">
@@ -38,7 +45,7 @@ export const Header = () => {
                 </NavLink>
               </li>
               <li>
-                <button onClick={() => logout()}>Logout</button>
+                <button onClick={handleLogout}>Logout</button>
               </li>
             </>
           )}

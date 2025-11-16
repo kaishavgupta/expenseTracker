@@ -14,9 +14,19 @@ export const registerData = async ({ request }) => {
       },
       body: JSON.stringify(formData),
     });
+    if(response.ok){
+      const res_data=await response.json()
+      const token = res_data.token;
+      storeDataLocal(token);
+      console.log("res from server ",res_data);
+      return redirect("/index");
+    }
 
-    const res_data=await response.json()
-    console.log("res from server",res_data);
+    else{
+      const res_data=await response.json()
+      console.log(res_data.extraDetails , res_data.message);
+      alert(`${res_data.extraDetails} ${res_data.message}`)
+    }
 
   } catch (error) {
     console.log(error);
@@ -29,7 +39,7 @@ export const loginData = async ({ request }) => {
   const response = await fetch("http://localhost:3000/login", {
     method: "POST",
     headers: {
-      "content-Type": "application/JSON",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(formData),
   });
@@ -38,25 +48,42 @@ export const loginData = async ({ request }) => {
     const res_data = await response.json();
     const token = res_data.token;
     storeDataLocal(token);
+    console.log("login sucesfull");
+    return redirect("/index");
   }
 
-  return redirect("/register");
+  else{
+    //  localStorage.removeItem("token");  
+    const res_data = await response.json();
+    alert(res_data.message)
+  }
+
 };
+
 
 export const verify = async () => {
   try {
     const token = LocalToken();
+    if (!token) return { user: null }; 
     const res = await fetch("http://localhost:3000/user", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    });
-
+    })
+   
+    
     const data = await res.json();
-    return { user: data };
+    console.log(data);
+    
+     return {
+      user: {
+        userData: data.userData, 
+      },
+    };
+    
   } catch (error) {
-    console.log("collectData ", error);
+    console.log("collectData verify", error);
     return { user: null };
   }
 };

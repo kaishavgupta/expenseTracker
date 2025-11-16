@@ -21,18 +21,21 @@ const App = () => {
 
       {
         path:"index",
-        element:<Index/>
+        element:<Index/>,
+        loader:verify
       },
 
       {
         path:"login",
         element:<Login/>,
+        loader:verify,
         action:loginData
       },
 
       {
         path:"register",
         element:<Register/>,
+        loader:verify,
         action:registerData
       },
     ],

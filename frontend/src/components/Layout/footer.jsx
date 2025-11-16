@@ -2,7 +2,7 @@ export const Footer = () => {
   return (
     <>
       <footer>
-        <p>Made with ❤️ by Kaishav</p>
+        <p>Made with ❤️ by Kaishav Gupta</p>
       </footer>
     </>
   );

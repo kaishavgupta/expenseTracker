@@ -1,29 +1,37 @@
+import { Navigate, redirect, useLoaderData, useNavigate } from "react-router-dom";
 import { Balance } from "./balance";
 // import { Footer } from "./Layout/footer";
-import {  FormData } from "./form";
+import { FormData } from "./form";
 import { Transaction } from "./transaction";
 
 export const Index = () => {
-  return (
-    <>
+  const data = useLoaderData();
+  const userData = data?.user?.userData;
+  if (userData) {
 
-      <main className="container">
-        <section className="form-section">
-          <FormData />
-        </section>
+    
+    return (
+      <>
+        <main className="container">
+          <section className="form-section">
+            <FormData />
+          </section>
 
-        {/* <!-- Balance Summary --> */}
-        <section className="summary">
-          <Balance />
-        </section>
+          {/* <!-- Balance Summary --> */}
+          <section className="summary">
+            <Balance />
+          </section>
 
-        {/* <!-- Transaction List --> */}
-        <section className="transactions">
-          <Transaction />
-        </section>
-      </main>
+          {/* <!-- Transaction List --> */}
+          <section className="transactions">
+            <Transaction />
+          </section>
+        </main>
 
-      {/* <Footer /> */}
-    </>
-  );
+        {/* <Footer /> */}
+      </>
+    );
+  }
+
+  return <Navigate to="/login"/>
 };

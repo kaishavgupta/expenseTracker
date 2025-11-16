@@ -1,9 +1,13 @@
-import { Form } from "react-router-dom";
-import { useRef } from "react";
+import { Form, Navigate, useLoaderData } from "react-router-dom";
+
 
 
 export const Register = () => {
-  const formRef = useRef();
+
+    const data = useLoaderData();
+  const userData = data?.user?.userData;
+  if (!userData) {
+    console.log(userData);
   return (
     <>
       <div className="container">
@@ -12,12 +16,6 @@ export const Register = () => {
         <Form 
         method="post" 
         className="register-form"
-        ref={formRef}
-        onSubmit={() => {
-          setTimeout(() => {
-            formRef.current?.reset();   // 🔥 clears form
-          }, 10);
-        }}
         >
           <div className="input-group">
             <label>Username</label>
@@ -43,7 +41,7 @@ export const Register = () => {
             <label>Phone Number</label>
             <input
               type="tel"
-              name="phone"
+              name="phoneNumber"
               placeholder="Enter phone number"
               required
             />
@@ -66,5 +64,6 @@ export const Register = () => {
         </Form>
       </div>
     </>
-  );
+  );}
+  return <Navigate to={"/index"}/>
 };
