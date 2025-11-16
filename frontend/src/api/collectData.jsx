@@ -14,6 +14,10 @@ export const registerData = async ({ request }) => {
       },
       body: JSON.stringify(formData),
     });
+
+    const res_data=await response.json()
+    console.log("res from server",res_data);
+
   } catch (error) {
     console.log(error);
   }
