@@ -1,34 +1,14 @@
-import { useEffect, useState } from "react";
-import { deleteTransaction, getTransaction } from "../../../api/transactionApi";
+
 import { MdDelete, MdEdit } from "react-icons/md";
+// import { toast } from "react-toastify";
 
-export const Transaction = () => {
-  const [transactions, setTransactions] = useState([]);
-
-  useEffect(() => {
-    const loadData = async () => {
-      const res = await getTransaction();
-      if (res) {
-        setTransactions(res);
-      }
-    };
-
-    loadData();
-  }, []);
-
-  const handleEdit = () => {
-    console.log("hello edit");
-  };
-  const handlleDelete = (id) => {
-    console.log("hello delete");
-    const res = deleteTransaction(id);
-    console.log(res);
-    
-    if (res?.success) {
-      setTransactions((prev) => prev.filter((item) => item._id !== id)); // 🔥 removes instantly
-    }
-  };
-
+export const Transaction = ({setIsEdit,setEditData,transactions,handlleDelete}) => {
+  
+  const Txtate=(id)=>{
+      const timestamp = id; 
+    const dateObject = new Date(timestamp);
+    return dateObject.toLocaleString();
+  }
   return (
     <>
       <h2>Recent Transactions</h2>
@@ -47,8 +27,16 @@ export const Transaction = () => {
               {item.amount}
             </span>
 
+            {Txtate(item._id)}
+
             <div className="action-buttons">
-              <button className="edit-btn" onClick={handleEdit}>
+              <button
+                className="edit-btn"
+                onClick={() => {
+                  setIsEdit(true);
+                  setEditData(item);
+                }}
+              >
                 <MdEdit size={20} />
               </button>
 

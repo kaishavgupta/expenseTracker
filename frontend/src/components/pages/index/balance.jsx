@@ -1,19 +1,5 @@
-import { useEffect, useState } from "react";
-import { getTransaction } from "../../../api/transactionApi";
-
-export const Balance = () => {
-  const [transactions, setTransactions] = useState([]);
-
-  useEffect(() => {
-    const loadData = async () => {
-      const res = await getTransaction();
-      if (res) {
-        setTransactions(res);
-      }
-    };
-
-    loadData();
-  }, []);
+export const Balance = ({transactions}) => {
+ 
 
 
   const income = () => {
