@@ -1,18 +1,20 @@
 import { toast } from "react-toastify";
-import { LocalToken } from "./localProvider";
 
-const token = LocalToken();
 export const getTransaction = async () => {
   try {
+
     const response = await fetch("http://localhost:3000/transaction/getData", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
       },
+      credentials:"include"
     });
+
+    
     if (response.ok) {
       const data = await response.json();
+      // console.log("getTransaction ",data);
       return data.transaction;
     }
   } catch (error) {
@@ -24,20 +26,20 @@ export const postTransaction = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
   const sendData = { transaction: [data] };
+
   try {
     const response = await fetch("http://localhost:3000/transaction/postData", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-
-        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(sendData),
+      credentials:"include"
     });
     if (response.ok) {
       const res = await response.json();
       // console.log("Transaction done ", res.msg);
-      return res.msg
+      return res.msg;
       // window.location.reload(true);
     }
   } catch (error) {
@@ -47,20 +49,17 @@ export const postTransaction = async ({ request }) => {
 
 export const updateTransaction = async (data) => {
   try {
+    const sendData = { transaction: [data] };
+
     const response = await fetch(
       "http://localhost:3000/transaction/updateData",
       {
         method: "PATCH",
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-          _id: data.id,
-          title: data.title,
-          amount: data.amount,
-          type: data.type,
-        }),
+        body: JSON.stringify(sendData),
+        credentials:"include"
       }
     );
     if (response.ok) {
@@ -80,18 +79,17 @@ export const deleteTransaction = async (_id) => {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-
-          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ _id: _id }),
+        credentials:"include"
       }
     );
     if (response.ok) {
       const res = await response.json();
       console.log(res);
-      
+
       // toast(res.msg);
-      return "success"
+      return "success";
     }
   } catch (error) {
     toast.error("Unable to Delete");

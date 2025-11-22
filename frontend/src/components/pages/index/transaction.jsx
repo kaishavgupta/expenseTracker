@@ -2,7 +2,7 @@
 import { MdDelete, MdEdit } from "react-icons/md";
 // import { toast } from "react-toastify";
 
-export const Transaction = ({setIsEdit,setEditData,transactions,handlleDelete}) => {
+export const Transaction = ({setIsEdit,setEditData,transactions,handlleDelete,setplus}) => {
   
   const Txtate=(id)=>{
       const timestamp = id; 
@@ -35,6 +35,7 @@ export const Transaction = ({setIsEdit,setEditData,transactions,handlleDelete}) 
                 onClick={() => {
                   setIsEdit(true);
                   setEditData(item);
+                  setplus((prev)=>!prev)
                 }}
               >
                 <MdEdit size={20} />

@@ -1,6 +1,6 @@
 import { redirect } from "react-router-dom";
 import { toast } from "react-toastify";
-import { LocalToken, storeDataLocal } from "./localProvider";
+
 // import { use } from "react";
 
 export const registerData = async ({ request }) => {
@@ -14,11 +14,9 @@ export const registerData = async ({ request }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
+      credentials:"include"
     });
     if (response.ok) {
-      const res_data = await response.json();
-      const token = res_data.token;
-      storeDataLocal(token);
       toast("Register Successfull");
       return redirect("/index");
     } else {
@@ -49,12 +47,10 @@ export const loginData = async ({ request }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(formData),
+    credentials: 'include'
   });
 
   if (response.ok) {
-    const res_data = await response.json();
-    const token = res_data.token;
-    storeDataLocal(token);
     toast("login sucesfull");
     return redirect("/index");
   } else {
@@ -88,16 +84,12 @@ export const loginData = async ({ request }) => {
 
 export const verify = async () => {
   try {
-    const token = LocalToken();
-    if (!token)return {user: null,};
     
     const res = await fetch("http://localhost:3000/user", {
       method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      credentials:"include"
     });
-
+    
     const data = await res.json();
     // console.log(data);
 
@@ -111,3 +103,11 @@ export const verify = async () => {
     return { user: null };
   }
 };
+
+export const logoutUser=async()=>{
+   const res=await fetch("http://localhost:3000/logout", {
+    method: "GET",
+    credentials: "include",
+  });
+  return res 
+}

@@ -1,27 +1,44 @@
-import { Navigate, NavLink, useLoaderData, useNavigate, useRevalidator } from "react-router-dom";
-import { logout } from "../../api/localProvider";
+import {
+  NavLink,
+  useLoaderData,
+  useNavigate,
+  useRevalidator,
+} from "react-router-dom";
+import { logoutUser } from "../../api/collectData";
 import { toast } from "react-toastify";
 
 export const Header = () => {
   const data = useLoaderData();
-  
   const userData = data?.user?.userData;
+
   const navigate = useNavigate();
   const { revalidate } = useRevalidator();
-  const handleLogout=()=>{
-    logout()
-    revalidate()
-    navigate("/login")
-    toast("Logout Successfull")
-  }
 
-  // const {username,email}=userData
+  const handleLogout = async () => {
+    const res = await logoutUser();
+    if (res.ok) {
+      revalidate();
+      navigate("/login");
+      toast("Logout Successful");
+    }
+  };
+
   return (
-    <header className="navbar">
-      {userData?.username && <h2>WELCOME {userData.username}</h2>}
+    <header className="navbar enhanced-navbar">
+      <div className="nav-left">
+        <NavLink to="/">
+        <h2 className="brand-logo">💸 ExpenseTracker</h2>
+        </NavLink>
+      </div>
+
+      {userData?.username && (
+        <>
+          <div className="Welcome">Welcome {userData.username}</div>
+        </>
+      )}
 
       <nav>
-        <ul className="nav-links">
+        <ul className="nav-links enhanced-links">
           <li>
             <NavLink to="/" className="nav-item">
               Home
@@ -45,11 +62,13 @@ export const Header = () => {
             <>
               <li>
                 <NavLink to="/index" className="nav-item">
-                  Index
+                  Dashboard
                 </NavLink>
               </li>
               <li>
-                <button onClick={handleLogout}>Logout</button>
+                <button className="logout-btn" onClick={handleLogout}>
+                  Logout
+                </button>
               </li>
             </>
           )}

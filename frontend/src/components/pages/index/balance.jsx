@@ -24,9 +24,6 @@ export const Balance = ({transactions}) => {
     return sum;
   };
 
-
-
-
   return (
     <>
       <div className="card income">
