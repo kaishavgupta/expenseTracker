@@ -1,168 +1,122 @@
-Here’s a **README.md template** for your repo expenseTracker on GitHub under `kaishavgupta`.
-You can copy and paste this into your `README.md` and tweak as needed (project description, screenshots, etc).
-
-```markdown
 # expenseTracker
 
 A full-stack Expense Tracker application built with a React front-end and a Node.js/Express backend.  
-Manage your income, expenses, view analytics and generate reports — all in one place.
+Track income, expenses, categories, and maintain a clean financial overview — all in one place.
 
 ---
 
 ## 🧱 Tech Stack
 
-- **Frontend**: React, React Router, Vite (or Create-React-App), Tailwind CSS / SCSS (modify as used)  
-- **Backend**: Node.js, Express, MongoDB (or whichever DB you use)  
-- **Auth**: JWT / Session based authentication with cookies (as set up)  
-- **API**: RESTful endpoints for CRUD operations of expenses, categories, user profile, etc  
-- **Misc**: ESLint/Prettier, GitHub Actions (optional), dotenv for config  
+- **Frontend**: React, React Router, Vite  
+- **Backend**: Node.js, Express, MongoDB  
+- **Auth**: JWT / Cookie-based authentication  
+- **API**: RESTful API for all expense operations  
+- **Misc**: ESLint / Prettier, dotenv, Toastify notifications  
 
 ---
 
 ## 🚀 Features
 
-- User registration, login & authentication  
-- Dashboard: view total income vs expenses, net balance  
-- Add / Edit / Delete transactions (income or expense)  
-- Categorize transactions (e.g., Food, Travel, Utilities)  
-- Filter and search transactions by date, category  
-- Export / download report (CSV / PDF) (if implemented)  
-- Responsive design for mobile & desktop  
-- Logout & session expiry  
+- User Registration, Login & Logout  
+- JWT Authentication with secure cookies  
+- Add / Edit / Delete transactions  
+- Categorize transactions (Food, Travel, Bills, etc.)  
+- View total income, total expenses, and remaining balance  
+- Filter transactions by category or date  
+- Responsive UI for mobile + desktop  
+- Clean, fast, modern React interface  
 
 ---
 
-## 🗂️ Folder Structure (example)
-
-```
+## 🗂️ Folder Structure
 
 root/
 │
-├─ frontend/                # React app
-│   ├─ src/
-│   ├─ public/
-│   ├─ package.json
+├─ frontend/
+│ ├─ src/
+│ ├─ public/
+│ ├─ package.json
 │
-├─ server/                  # Backend API
-│   ├─ controller/
-│   ├─ model/
-│   ├─ routes/
-│   ├─ utils/
-│   ├─ server.js
-│   ├─ package.json
+├─ server/
+│ ├─ controller/
+│ ├─ model/
+│ ├─ routes/
+│ ├─ utils/
+│ ├─ server.js
+│ ├─ package.json
 │
 ├─ .gitignore
 └─ README.md
 
-````
 
 ---
 
 ## 📦 Getting Started (Local Setup)
 
-1. Clone this repository  
+1. Clone the repository:
    ```bash
    git clone https://github.com/kaishavgupta/expenseTracker.git
    cd expenseTracker
-````
 
-2. Setup backend
 
-   ```bash
-   cd server
-   npm install
-   cp .env.example .env     # configure your environment variables (DB_URI, JWT_SECRET, PORT etc)
-   npm run dev              # or npm start
-   ```
+Install backend dependencies:
 
-3. Setup frontend (in a new terminal)
+cd server
+npm install
+npm run dev   # or npm start
 
-   ```bash
-   cd ../frontend
-   npm install
-   npm run dev              # runs the React dev server
-   ```
 
-4. Open your browser at `http://localhost:3000` (or the port your frontend uses)
-   The backend API will be running (e.g., `http://localhost:5000/api/...`).
+Install frontend dependencies:
 
----
+cd ../frontend
+npm install
+npm run dev   # start React dev server
 
-## 🧪 Running Tests
 
-> *If you have tests set up*
+Now open your browser at:
 
-```bash
-# backend tests
+http://localhost:3000
+
+🧪 Running Tests
+
+(Only if tests are configured)
+
+# Backend tests
 cd server
 npm test
 
-# frontend tests
+# Frontend tests
 cd ../frontend
 npm test
-```
 
----
+📝 Deployment
 
-## 🔧 Environment Variables
+Build the frontend using:
 
-In `server/.env` (example):
+npm run build
 
-```
-DB_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/expenseTrackerDB
-JWT_SECRET=your_secret_key
-PORT=5000
-```
 
-In `frontend/.env` (example):
+Host backend on services like Render, Heroku, or AWS.
 
-```
-VITE_API_URL=http://localhost:5000/api
-```
+Configure database + production settings accordingly.
 
----
+🤝 Contributing
 
-## 📝 Deployment
+Fork the repo
 
-* Setup a production build of the frontend (e.g., `npm run build`) and serve using `serve` or via your backend.
-* Deploy the backend to platforms like Heroku, DigitalOcean, AWS, etc.
-* Make sure to set all required environment variables on your hosting platform.
+Create your feature branch:
 
----
+git checkout -b feature/MyFeature
 
-## 🤝 Contributing
 
-Contributions are welcome!
+Commit your changes:
 
-1. Fork the repo
-2. Create your feature branch (`git checkout -b feature/YourFeature`)
-3. Commit your changes (`git commit -m 'Add some feature'`)
-4. Push to the branch (`git push origin feature/YourFeature`)
-5. Create a Pull Request
+git commit -m "Add my feature"
 
-Please make sure your code follows the project style and includes meaningful tests if needed.
 
----
+Push the branch:
 
-## 📄 License
+git push origin feature/MyFeature
 
-This project is licensed under the [MIT License](./LICENSE).
 
----
-
-## 📞 Contact
-
-Created by **Kaishav Gupta** — feel free to reach out:
-[LinkedIn](https://www.linkedin.com/in/kaishav-gupta) | [Email](mailto:kaishav@example.com)
-
----
-
-> **Tip**: Replace placeholder links (GitHub, LinkedIn, Email) with your actual ones, update environment variable keys, and add any screenshots or badges (build status, code coverage) as you like.
-
-```
-
----
-
-If you like, I can generate a **Markdown‐with‐badges** version (e.g., GitHub Actions CI badge, license badge, version badge) too — want that?
-::contentReference[oaicite:1]{index=1}
-```
+Open a Pull Request
