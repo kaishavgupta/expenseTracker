@@ -19,9 +19,6 @@ export const registerData = async ({ request }) => {
     toast("Register Successful");
     return redirect("/index");
   } catch (error) {
-    // ❌ if Axios hits backend error -> error.response exists
-    // // error found in your code here:
-    // // You didn’t handle fetch's non-200 responses using throw. Axios does automatically.
 
     const res = error.response?.data;
 
