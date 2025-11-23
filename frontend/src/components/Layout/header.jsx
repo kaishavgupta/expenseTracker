@@ -16,7 +16,7 @@ export const Header = () => {
 
   const handleLogout = async () => {
     const res = await logoutUser();
-    if (res.ok) {
+    if (res) {
       revalidate();
       navigate("/login");
       toast("Logout Successful");

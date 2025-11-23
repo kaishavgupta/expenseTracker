@@ -87,7 +87,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  background: #2684ac;
+  background: #5c7cfa;
   padding: 1.8rem;
   border-radius: 12px;
   box-shadow: 0 4px 14px rgba(0,0,0,0.3);
@@ -535,13 +535,46 @@ footer {
   }
 }
 
+/* ================= TECH STACK SECTION ================= */
 
-/* .form-section.income {
-  border: 2px solid #22c55e;
-  background: rgba(34, 197, 94, 0.08);
+.tech-section {
+  margin-top: 5rem;
 }
 
-.form-section.expense {
-  border: 2px solid #ef4444;
-  background: rgba(239, 68, 68, 0.08);
-} */
+.tech-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.tech-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.tech-card {
+  background: #5c7cfa;
+  padding: 1.8rem;
+  border-radius: 12px;
+  color: white;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  transition: 0.3s ease;
+}
+
+.tech-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+}
+
+.tech-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.tech-card p {
+  opacity: 0.85;
+  font-size: 0.95rem;
+}
+

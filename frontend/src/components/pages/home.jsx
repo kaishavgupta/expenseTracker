@@ -22,7 +22,7 @@ export const Home = () => {
             <div className="btn-primary">Get Started</div>
           </NavLink>
           <NavLink to="/login">
-          <div className="btn-secondary">Login</div>
+            <div className="btn-secondary">Login</div>
           </NavLink>
         </div>
       </section>
@@ -73,6 +73,45 @@ export const Home = () => {
             <h3>🔎 Transparent Tracking</h3>
             <p>Timestamped entries with edit history & organized insights.</p>
           </div>
+        </div>
+      </section>
+
+      {/* ================= TECH STACK SECTION ================= */}
+      <section className="tech-section">
+        <h2>Technology Used</h2>
+
+        <div className="tech-grid">
+
+          <div className="tech-card">
+            <h3>⚛️ React</h3>
+            <p>Modern component-based UI with optimized rendering.</p>
+          </div>
+
+          <div className="tech-card">
+            <h3>📡 Axios</h3>
+            <p>Used for API calls with token-based authentication.</p>
+          </div>
+
+          <div className="tech-card">
+            <h3>🟢 Node.js</h3>
+            <p>High-performance server environment for backend logic.</p>
+          </div>
+
+          <div className="tech-card">
+            <h3>🚀 Express.js</h3>
+            <p>Fast and minimalist API framework powering the backend.</p>
+          </div>
+
+          <div className="tech-card">
+            <h3>🍃 MongoDB</h3>
+            <p>NoSQL database storing encrypted transaction data.</p>
+          </div>
+
+          <div className="tech-card">
+            <h3>🔑 JWT</h3>
+            <p>Ensures secure login, route protection & user sessions.</p>
+          </div>
+
         </div>
       </section>
     </main>
