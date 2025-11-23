@@ -1,22 +1,18 @@
-import { toast } from "react-toastify";
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: "http://localhost:3000/",
+});
 
 export const getTransaction = async () => {
   try {
-
-    const response = await fetch("http://localhost:3000/transaction/getData", {
-      method: "GET",
+    const dataTransaction = await api.get("transaction/getData", {
       headers: {
         "Content-Type": "application/json",
       },
-      credentials:"include"
+      withCredentials: true,
     });
-
-    
-    if (response.ok) {
-      const data = await response.json();
-      // console.log("getTransaction ",data);
-      return data.transaction;
-    }
+    return dataTransaction.data.transaction;
   } catch (error) {
     console.log("Error While getting transaction data ", error);
   }
@@ -28,71 +24,42 @@ export const postTransaction = async ({ request }) => {
   const sendData = { transaction: [data] };
 
   try {
-    const response = await fetch("http://localhost:3000/transaction/postData", {
-      method: "POST",
+    const res = await api.post("transaction/postData", sendData, {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(sendData),
-      credentials:"include"
+      withCredentials: true,
     });
-    if (response.ok) {
-      const res = await response.json();
-      // console.log("Transaction done ", res.msg);
-      return res.msg;
-      // window.location.reload(true);
-    }
+    console.log(res);
   } catch (error) {
     console.log("Error While Posting transaction data ", error);
   }
 };
 
-export const updateTransaction = async (data) => {
-  try {
-    const sendData = { transaction: [data] };
 
-    const response = await fetch(
-      "http://localhost:3000/transaction/updateData",
-      {
-        method: "PATCH",
-        headers: {
+export const updateTransaction=async(data)=>{
+    try {
+        api.patch("transaction/updateData",data,{
+        headers:{
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(sendData),
-        credentials:"include"
-      }
-    );
-    if (response.ok) {
-      const res = await response.json();
-      console.log(res);
+        withCredentials:true
+    })
+    } catch (error) {
+        console.log("Error While Updating transaction data ", error);
     }
-  } catch (error) {
-    console.log("Error While Posting transaction data ", error);
-  }
-};
+}
 
-export const deleteTransaction = async (_id) => {
-  try {
-    const response = await fetch(
-      "http://localhost:3000/transaction/deleteData",
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
+
+export const deleteTransaction=async(_id)=>{
+    try {
+      return  await api.patch(`transaction/deleteData/`, { _id: _id },{
+        headers:{
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify({ _id: _id }),
-        credentials:"include"
-      }
-    );
-    if (response.ok) {
-      const res = await response.json();
-      console.log(res);
-
-      // toast(res.msg);
-      return "success";
+        withCredentials:true
+    })
+    } catch (error) {
+        console.log("Error While deleting transaction data ", error);
     }
-  } catch (error) {
-    toast.error("Unable to Delete");
-    console.log("Error While deleting transaction data ", error);
-  }
-};
+}

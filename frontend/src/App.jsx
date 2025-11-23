@@ -6,6 +6,7 @@ import { Register } from "./components/pages/register";
 import { Layout } from "./components/Layout/appLayout";
 import { Home } from "./components/pages/home";
 import { registerData, loginData, verify } from "./api/collectData";
+// import { postTransaction } from "./api/transactionApi";
 import { postTransaction } from "./api/transactionApi";
 import { AuthdataProvider } from "./api/transactionContext";
 // import { LocalProvider } from "./api/localProvider";

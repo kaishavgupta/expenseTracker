@@ -6,10 +6,13 @@ import { FormData } from "./form";
 import { Transaction } from "./transaction";
 import { useEffect, useState } from "react";
 import {
-  deleteTransaction,
-  getTransaction,
-  updateTransaction,
-} from "../../../api/transactionApi";
+  // deleteTransaction,
+  // getTransaction,
+  // updateTransaction,
+} from "../../../api/fetch";
+
+import { deleteTransaction, getTransaction, updateTransaction } from "../../../api/transactionApi";
+
 
 export const Index = () => {
   const [isEdit, setIsEdit] = useState(false);
@@ -20,7 +23,7 @@ export const Index = () => {
 
   const loadData = async () => {
     const res = await getTransaction();
-    console.log(res);
+    console.log("Index ",res);
     
     if (res) {
       setTransactions(res);
